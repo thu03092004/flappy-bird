@@ -12,16 +12,19 @@
 #include "Background.h"
 #include "Player.h"
 #include "Pipe.h"
+#include "Menu.h"
 #include "TextObject.h"
 
 class GameLoop
 {
 private:
+    Menu menu;
     Player p; // bird
     Background b; // background
     Background g1, g2; // đất
     Pipe p1_[2], p2_[2]; // cột
     TextObject t;
+
 
     const int SCREEN_WIDTH = 480;
     const int SCREEN_HEIGHT = 626;
@@ -29,9 +32,9 @@ private:
     bool GameState;
     
     bool birdDie = false;
-    bool checkDie = true;
-    bool playing = false;
     bool newGame = false;
+    // bool checkDie = true;
+    // bool playing = false;
 
     SDL_Window* window;
     SDL_Event event;
@@ -40,22 +43,18 @@ private:
     //music
     Mix_Music* backgroundSound;
     Mix_Chunk* wingSound;
-    Mix_Chunk* winSound;
+    Mix_Chunk* scoreSound;
     Mix_Chunk* dieSound;
 
     //score
-    int fontSize = 50;
+    int fontSize = 60;
     int bestScore;
     int score = 0;
     TTF_Font* scoreFont;
 
-    //menu
-    SDL_Rect start = { 167, 360, 213, 86 };
-    SDL_Rect quit1 = { 167, 481, 213, 86 };
-    SDL_Rect playAgain = { 56, 507, 197, 78};
-    SDL_Rect quit2 = { 297, 507, 197, 78};
-
-    SDL_Color white = {250,  250, 250, 250};
+    //color 
+    SDL_Color white = {250, 250, 250, 250};
+    SDL_Color black = {0, 0, 0, 250};
 
 public:
     GameLoop();
@@ -65,13 +64,12 @@ public:
     void NewGame();
     void Event();
     void Update();
+    // xử lý va chạm
     bool checkCollision(const SDL_Rect &a,const SDL_Rect &b );
     void CollisionDetection();
+    // xử lý điểm số
     bool checkScore(const SDL_Rect &a,const SDL_Rect &b );
     void Score();
-    void Die();
     void Render();
     void Close();
-
-    void set_color(int code);
 };

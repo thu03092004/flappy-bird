@@ -13,8 +13,6 @@ Pipe::Pipe(int xPipe)
 {
 	srand(time(NULL));
 	xPos[xPipe] = xPipe * 280 + 480;
-	//p1h[xPipe] = Pipe::pipeRandHeight();
-	//p2h[xPipe] = 560 - space - p1h[xPipe];
 }
  
 int Pipe::pipeRandHeight()
@@ -70,16 +68,7 @@ int Pipe::getxPos(int i)
 	return xPos[i];
 }
  
-//void Pipe::SpaceScore(int i)
-//{
-//	setSrc(0, 0, NULL, NULL);
-	//setSrc(0, 0, 78, 69);	//test spaceScore
-//	setDest(xPos[i] + 20, p1h[i], 3, space);
-//}
- 
 void Pipe::Render(SDL_Renderer* ren)
 {
-   // SDL_Rect tmp = getDest();
-   // std :: cout<<(int)(tmp.x) <<' ' <<(int)(tmp.y )<<'\n';
 	SDL_RenderCopy(ren, getTexture(), &getSrc(), &getDest());
 }

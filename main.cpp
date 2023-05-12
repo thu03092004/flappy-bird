@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 
     uint32_t frameStart; // giữ lại thời điểm bắt đầu của 1 khung hình mới
     int frameTime; // giữ thời gian đã trôi qua cho 1 khung hình
-
+ 
     g->Initialize();
     while(g->getGameState())
     {

@@ -2,8 +2,8 @@
 #include "Object.h"
 #include <ctime>
 
-static int p1h[3];		//Height of the up pipe
-static int xPos[3];		//Distance of pipes
+static int p1h[2];		//Height of the up pipe
+static int xPos[2];		//Distance of pipes
 
 class Pipe : public Object
 {
@@ -21,6 +21,5 @@ public:
 	void PipeUpdate2(int i);
 	int getp1h(int i);
 	int getxPos(int i);
-	//void SpaceScore(int i);
 	void Render(SDL_Renderer* ren);
 };
