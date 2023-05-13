@@ -1,6 +1,19 @@
 #include "Player.h"
 #include <iostream>
 
+void Player::reset()
+{
+    gravity = 0.2;
+    Ypos = 256;
+    accelerator1 = 0;
+    accelerator2 = 0;
+    inJump = false;
+    jumpHeight = -7;
+    lastJump = 0;
+    setDest(200, Ypos, 48, 38);
+    return;
+}
+
 void Player::Render(SDL_Renderer* ren)
 {
     animationTimer++;

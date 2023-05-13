@@ -16,6 +16,7 @@ private:
     SDL_Texture* Tex2;
     int animationTimer;
 public:
+    void reset();
     void Gravity();
     double GetJumpTime(double jumpTimer);
     void Jump();

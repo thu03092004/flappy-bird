@@ -116,17 +116,14 @@ void GameLoop::NewGame()
 {
     birdDie = false;
     score = 0;
-    // khởi tạo lại vị trí cột
+    p.setSrc(0, 0, 68, 48);
+    p.reset();
 
-    // khởi tạo lại vị trí chú chim
-    p.Gravity();
-    int xPipe[2] = { 0, 1 } ;
     for(int i = 0; i < 2; i++)
     {
-        p1_[i].PipeUpdate1(i, birdDie);
-        p2_[i].PipeUpdate2(i, birdDie);
+        p1_[i].reset(0);
+        p2_[i].reset(1);
     }
-
 }
 
 void GameLoop::Event()
@@ -134,12 +131,12 @@ void GameLoop::Event()
     SDL_PollEvent(&event);
     if (menu.is_on_menu_state())
     {
-        Mix_VolumeChunk(clickSound, 25);
-        Mix_PlayChannel(1, clickSound, 0);
-        menu.handleEvent(event, GameState);
+        menu.handleEvent(event, GameState, clickSound);
     }
     else if (menu.is_on_end_state())
     {
+        menu.handle_end_menu_state_event(event, GameState, clickSound);
+        //NewGame();
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
             int _x = event.button.x;

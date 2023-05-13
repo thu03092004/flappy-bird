@@ -22,7 +22,7 @@ void Menu::Start()
     on_end_state = false;
 }
 
-void Menu::handleEvent(SDL_Event event, bool &gameState)
+void Menu::handleEvent(SDL_Event event, bool &gameState, Mix_Chunk* clickSound)
 {
     if (on_menu_state)
     {
@@ -32,16 +32,41 @@ void Menu::handleEvent(SDL_Event event, bool &gameState)
             int _y = event.button.y;
             if (144 <= _x && _x <= 144 + 190 && 312 <= _y && _y <= 312 + 73)
             {
+                Mix_VolumeChunk(clickSound, 25);
+                Mix_PlayChannel(1, clickSound, 0);
                 on_menu_state = false;
             }
             else if (144 <= _x && _x <= 144 + 190 && 412 <= _y && _y <= 412 + 73)
             {
+                Mix_VolumeChunk(clickSound, 25);
+                Mix_PlayChannel(1, clickSound, 0);
                 gameState = false;
             }
         }
     }
 }
 
+void Menu::handle_end_menu_state_event(SDL_Event event, bool &gameState, Mix_Chunk* clickSound)
+{
+    if(event.type == SDL_MOUSEBUTTONDOWN)
+    {
+        int _x = event.button.x;
+        int _y = event.button.y;
+
+        if(49 <= _x && _x <= 49 + 170 && 440 <= _y && _y <= 440 + 68)
+        {
+            Mix_VolumeChunk(clickSound, 25);
+            Mix_PlayChannel(1, clickSound, 0);
+            on_end_state = false;
+        }
+        else if(259 <= _x && _x <= 259 + 170 && 440 <= _y && _y <= 440 + 68)
+        {
+            Mix_VolumeChunk(clickSound, 25);
+            Mix_PlayChannel(1, clickSound, 0);
+            gameState = false;
+        }
+    }
+}
 // MenuOption Menu::handleMenuClick(SDL_Event event)
 // {
 //     if (on_end_state)

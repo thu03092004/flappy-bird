@@ -14,7 +14,13 @@ Pipe::Pipe(int xPipe)
 	srand(time(NULL));
 	xPos[xPipe] = xPipe * 280 + 480;
 }
- 
+
+void Pipe::reset(int i)
+{
+    xPos[0] = xPos[1] = -480;
+    setDest(xPos[i], 560 - p1h[i], pipeWidth, p1h[i]);
+    return;
+}
 int Pipe::pipeRandHeight()
 {
 	return rand() * rand() % (330 - 100 + 1) + 100;

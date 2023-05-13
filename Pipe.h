@@ -21,5 +21,6 @@ public:
 	void PipeUpdate2(int i);
 	int getp1h(int i);
 	int getxPos(int i);
+	void reset(int i);
 	void Render(SDL_Renderer* ren);
 };
