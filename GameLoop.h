@@ -24,6 +24,7 @@ private:
     Background g1, g2; // đất
     Pipe p1_[2], p2_[2]; // cột
     TextObject t;
+    TextObject tBest;
 
 
     const int SCREEN_WIDTH = 480;
@@ -51,10 +52,13 @@ private:
     int bestScore;
     int score = 0;
     TTF_Font* scoreFont;
+    TTF_Font* yourScoreFont;
 
     //color 
     SDL_Color white = {250, 250, 250, 250};
     SDL_Color black = {0, 0, 0, 250};
+
+    //enum MenuOption { PLAY_AGAIN , QUIT };
 
 public:
     GameLoop();

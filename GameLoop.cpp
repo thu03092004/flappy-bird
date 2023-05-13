@@ -96,6 +96,7 @@ void GameLoop::Initialize()
     else
     {
         scoreFont = TTF_OpenFont("font/font.ttf", fontSize);
+        yourScoreFont = TTF_OpenFont("font/font.ttf", fontSize + 40);
     }
 
     std::ifstream file("bestScore.txt");
@@ -127,17 +128,30 @@ void GameLoop::Event()
     SDL_PollEvent(&event);
     if (menu.is_on_menu_state())
     {
-        menu.handleEvent1(event, GameState);
+        menu.handleEvent(event, GameState);
     }
-    else if (menu.is_on_menu_state())
+    else if (menu.is_on_end_state())
     {
-        menu.handleEvent2(event, GameState, birdDie, newGame);
-        if(newGame) NewGame();
+        if (event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            int _x = event.button.x;
+            int _y = event.button.y;
+
+            if (49 <= _x && _x <= 49 + 170 && 480 <= _y && _y <= 480 + 68)
+            {
+                //return PLAY_AGAIN;
+            }
+            else if (259 <= _x && _x <= 259 + 170 && 480 <= _y && _y <= 480 + 68)
+            {
+                GameState = false;
+            }
+        }
     }
     else
     {
         if (birdDie)
         {
+            SDL_Delay(2000);
             menu.update(birdDie);
             // GameState = false;
             // SDL_Delay(3000);
@@ -181,10 +195,20 @@ void GameLoop::Event()
 
 void GameLoop::Update()
 {
-    if (menu.is_on_menu_state() || menu.is_on_end_state())
+    if (menu.is_on_menu_state())
     {
         return;
     }
+
+    if(menu.is_on_end_state())
+    {
+        std::string scoreText = std::to_string(score);
+        t.WriteText1(scoreText, yourScoreFont, black, renderer);
+        std::string bestScoreText = std::to_string(bestScore);
+        tBest.WriteText2(bestScoreText, scoreFont, black, renderer);
+        return;
+    }
+    
     g1.GroundUpdate1(birdDie);
     g2.GroundUpdate2(birdDie);
 
@@ -219,6 +243,8 @@ void GameLoop::Render()
     else if (menu.is_on_end_state())
     {
         menu.Render(renderer);
+        tBest.Render(renderer);
+        t.Render(renderer);
     }
     else
     {
@@ -316,19 +342,6 @@ void GameLoop::Score()
         Mix_PlayChannel(1, scoreSound, 0);
     }
 }
-
-// bool GameLoop::checkStart(SDL_Rect &a)
-// {
-//     int mouseX, mouseY;
-//     SDL_GetMouseState(&mouseX, &mouseY);
-//     SDL_Point mousePos = {mouseX, mouseY};
-
-//     if (SDL_PointInRect(&mousePos, &a))
-//     {
-//         return true;
-//     }
-//     return false;
-// }
 
 void GameLoop::Close()
 {

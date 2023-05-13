@@ -23,5 +23,7 @@ public:
 
 	SDL_Texture* getTextTexture();
 	void WriteText(string text, TTF_Font* textFont, SDL_Color color, SDL_Renderer* ren);
+	void WriteText1(string text, TTF_Font* textFont, SDL_Color color, SDL_Renderer* ren);
+	void WriteText2(string text, TTF_Font* textFont, SDL_Color color, SDL_Renderer* ren);
 	void Render(SDL_Renderer* ren);
 };

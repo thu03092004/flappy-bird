@@ -16,7 +16,7 @@ bool Menu::is_on_end_state()
     return on_end_state;
 }
 
-void Menu::handleEvent1(SDL_Event event, bool &gameState)
+void Menu::handleEvent(SDL_Event event, bool &gameState)
 {
     if (on_menu_state)
     {
@@ -36,35 +36,37 @@ void Menu::handleEvent1(SDL_Event event, bool &gameState)
     }
 }
 
+// MenuOption Menu::handleMenuClick(SDL_Event event)
+// {
+//     if (on_end_state)
+//     {
+//         if (event.type == SDL_MOUSEBUTTONDOWN)
+//         {
+//             int _x = event.button.x;
+//             int _y = event.button.y;
+
+//             if (49 <= _x && _x <= 49 + 170 && 480 <= _y && _y <= 480 + 68)
+//             {
+//                 return PLAY_AGAIN;
+//             }
+//             else if (259 <= _x && _x <= 259 + 170 && 480 <= _y && _y <= 480 + 68)
+//             {
+//                 return QUIT;
+//             }
+//             else
+//             {
+//                 // Không nhấp vào gì cả
+//                 return -1;
+//             }
+//         }
+//     }
+// }
+
 void Menu::update(bool &birdDie)
 {
     if (birdDie)
-        on_end_state = true;
-}
-
-void Menu::handleEvent2(SDL_Event event, bool &gameState, bool &birdDie, bool &newGame)
-{
-    if (on_end_state)
     {
-        if (event.type == SDL_MOUSEBUTTONDOWN)
-        {
-            int _x = event.button.x;
-            int _y = event.button.y;
-
-            // play again
-            if (49 <= _x && _x <= 49 + 170 && 480 <= _y && _y <= 480 + 68)
-            {
-                on_end_state = false;
-                newGame = true;
-            }
-
-            // quit
-            else if (259 <= _x && _x <= 259 + 170 && 480 <= _y && _y <= 480 + 68)
-            {
-                on_end_state = false;
-                gameState = false;
-            }
-        }
+        on_end_state = true;
     }
 }
 
