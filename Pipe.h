@@ -13,7 +13,7 @@ public:
 	int pipeHeight;
 	int space;
 
-	int p2h[3];
+	int p2h[2];
 	Pipe();
 	Pipe(int xPipe);
 	int pipeRandHeight();

@@ -16,6 +16,12 @@ bool Menu::is_on_end_state()
     return on_end_state;
 }
 
+void Menu::Start()
+{
+    on_menu_state = true;
+    on_end_state = false;
+}
+
 void Menu::handleEvent(SDL_Event event, bool &gameState)
 {
     if (on_menu_state)

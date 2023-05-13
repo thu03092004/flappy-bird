@@ -84,6 +84,7 @@ void GameLoop::Initialize()
         wingSound = Mix_LoadWAV("sound/wing.wav");
         scoreSound = Mix_LoadWAV("sound/score.wav");
         dieSound = Mix_LoadWAV("sound/die.wav");
+        clickSound = Mix_LoadWAV("sound/click.wav");
     }
     Mix_VolumeMusic(30);
     Mix_PlayMusic(backgroundSound, -1);
@@ -114,13 +115,18 @@ void GameLoop::Initialize()
 void GameLoop::NewGame()
 {
     birdDie = false;
-    newGame = false; 
+    score = 0;
+    // khởi tạo lại vị trí cột
+
+    // khởi tạo lại vị trí chú chim
+    p.Gravity();
+    int xPipe[2] = { 0, 1 } ;
     for(int i = 0; i < 2; i++)
     {
-        p1_[i].setSrc(0, 0, 54, 250);
-        p2_[i].setSrc(0, 0, 54, 250);
+        p1_[i].PipeUpdate1(i, birdDie);
+        p2_[i].PipeUpdate2(i, birdDie);
     }
-    score = 0;  
+
 }
 
 void GameLoop::Event()
@@ -128,6 +134,8 @@ void GameLoop::Event()
     SDL_PollEvent(&event);
     if (menu.is_on_menu_state())
     {
+        Mix_VolumeChunk(clickSound, 25);
+        Mix_PlayChannel(1, clickSound, 0);
         menu.handleEvent(event, GameState);
     }
     else if (menu.is_on_end_state())
@@ -137,11 +145,12 @@ void GameLoop::Event()
             int _x = event.button.x;
             int _y = event.button.y;
 
-            if (49 <= _x && _x <= 49 + 170 && 480 <= _y && _y <= 480 + 68)
+            if (49 <= _x && _x <= 49 + 170 && 440 <= _y && _y <= 440 + 68)
             {
-                //return PLAY_AGAIN;
+                menu.Start();
+                NewGame();
             }
-            else if (259 <= _x && _x <= 259 + 170 && 480 <= _y && _y <= 480 + 68)
+            else if (259 <= _x && _x <= 259 + 170 && 440 <= _y && _y <= 440 + 68)
             {
                 GameState = false;
             }

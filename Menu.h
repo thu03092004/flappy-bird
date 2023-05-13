@@ -17,6 +17,7 @@ public:
     void update(bool &birdDie);
     void handleEvent(SDL_Event event, bool &gameState);
     void CreateTexture1(const char* address, SDL_Renderer* ren);
+    void Start();
     // MenuOption handleMenuClick(SDL_Event event);
     void Render(SDL_Renderer *ren);
 };

@@ -33,7 +33,7 @@ private:
     bool GameState;
     
     bool birdDie = false;
-    bool newGame = false;
+    //bool newGame = false;
     // bool checkDie = true;
     // bool playing = false;
 
@@ -46,6 +46,7 @@ private:
     Mix_Chunk* wingSound;
     Mix_Chunk* scoreSound;
     Mix_Chunk* dieSound;
+    Mix_Chunk* clickSound;
 
     //score
     int fontSize = 60;
