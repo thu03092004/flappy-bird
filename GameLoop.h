@@ -14,6 +14,7 @@
 #include "Pipe.h"
 #include "Menu.h"
 #include "TextObject.h"
+#include "howToPlay.h"
 
 class GameLoop
 {
@@ -25,6 +26,7 @@ private:
     Pipe p1_[2], p2_[2]; // cột
     TextObject t;
     TextObject tBest;
+    howToPlay hoicham;
 
 
     const int SCREEN_WIDTH = 480;
@@ -33,9 +35,6 @@ private:
     bool GameState;
     
     bool birdDie = false;
-    //bool newGame = false;
-    // bool checkDie = true;
-    // bool playing = false;
 
     SDL_Window* window;
     SDL_Event event;

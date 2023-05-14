@@ -16,10 +16,20 @@ bool Menu::is_on_end_state()
     return on_end_state;
 }
 
+bool Menu::how_to_play()
+{
+    return howToPlay;
+}
 void Menu::Start()
 {
     on_menu_state = true;
     on_end_state = false;
+}
+
+void Menu::Return()
+{
+    on_menu_state = true;
+    howToPlay = false;
 }
 
 void Menu::handleEvent(SDL_Event event, bool &gameState, Mix_Chunk* clickSound)
@@ -41,6 +51,13 @@ void Menu::handleEvent(SDL_Event event, bool &gameState, Mix_Chunk* clickSound)
                 Mix_VolumeChunk(clickSound, 25);
                 Mix_PlayChannel(1, clickSound, 0);
                 gameState = false;
+            }
+            else if (398 <= _x && _x <= 398 + 42 && 551 <= _y && _y <= 551 + 61)
+            {
+                Mix_VolumeChunk(clickSound, 25);
+                Mix_PlayChannel(1, clickSound, 0);
+                on_menu_state = false;
+                howToPlay = true;
             }
         }
     }

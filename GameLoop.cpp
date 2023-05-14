@@ -39,6 +39,10 @@ void GameLoop::Initialize()
             menu.CreateTexture("image/menu/start.png", renderer);
             menu.CreateTexture1("image/menu/gameover.png", renderer);
 
+            //how to play
+            hoicham.CreateTexture("image/guide/1.png", renderer);
+            hoicham.CreateTexture1("image/guide/2.png", renderer);
+
             // bird
             p.CreateTexture("image/bird/1-1.png", renderer);
             p.CreateTexture1("image/bird/1-2.png", renderer);
@@ -153,6 +157,16 @@ void GameLoop::Event()
             }
         }
     }
+    else if(menu.how_to_play())
+    {
+        if(event.type == SDL_KEYDOWN)
+        {
+            if(event.key.keysym.sym == SDLK_1)
+            {
+                menu.Return();
+            }
+        }
+    }
     else
     {
         if (birdDie)
@@ -201,7 +215,7 @@ void GameLoop::Event()
 
 void GameLoop::Update()
 {
-    if (menu.is_on_menu_state())
+    if (menu.is_on_menu_state() || menu.how_to_play())
     {
         return;
     }
@@ -251,6 +265,10 @@ void GameLoop::Render()
         menu.Render(renderer);
         tBest.Render(renderer);
         t.Render(renderer);
+    }
+    else if (menu.how_to_play())
+    {
+        hoicham.Render(renderer);
     }
     else
     {
