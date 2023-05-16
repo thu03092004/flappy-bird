@@ -58,8 +58,6 @@ private:
     SDL_Color white = {250, 250, 250, 250};
     SDL_Color black = {0, 0, 0, 250};
 
-    //enum MenuOption { PLAY_AGAIN , QUIT };
-
 public:
     GameLoop();
     ~GameLoop();

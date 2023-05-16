@@ -55,11 +55,9 @@ Or you can download the zip file and unzip it.
 
 
 ### NGUỒN THAM KHẢO
-+ Kênh [Youtube](https://www.youtube.com/@askarihassan2632)
 + Trang web [lazyfoo](https://lazyfoo.net/tutorials/SDL/)
 
 #### REFERENCE
-+ [Youtube](https://www.youtube.com/@askarihassan2632)
 + [lazyfoo](https://lazyfoo.net/tutorials/SDL/)
 
 

@@ -45,7 +45,6 @@ void Menu::handleEvent(SDL_Event event, bool &gameState, Mix_Chunk* clickSound)
             {
                 Mix_VolumeChunk(clickSound, 25);
                 Mix_PlayChannel(1, clickSound, 0);
-                SDL_Delay(1000);
                 on_menu_state = false;
             }
             else if (144 <= _x && _x <= 144 + 190 && 412 <= _y && _y <= 412 + 73)
